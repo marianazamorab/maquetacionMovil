@@ -13,6 +13,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   bool showOptions = false;
+  bool isSwitched = true;
 
   @override
   Widget build(BuildContext context) {
@@ -72,13 +73,17 @@ class _HomeViewState extends State<HomeView> {
                           Image.asset('assets/images/cloud.png'),
                           Theme(
                             data: ThemeData(useMaterial3: false),
-                            child: const Switch(
-                              value: true,
-                              onChanged: null,
+                            child: Switch(
+                              value: isSwitched,
+                              onChanged: (_) {
+                                setState(() {
+                                  isSwitched = !isSwitched;
+                                });
+                              },
                               trackColor:
-                                  MaterialStatePropertyAll(Colors.blue2),
+                                  const MaterialStatePropertyAll(Colors.blue2),
                               thumbColor:
-                                  MaterialStatePropertyAll(Colors.white),
+                                  const MaterialStatePropertyAll(Colors.white),
                             ),
                           ),
                         ],

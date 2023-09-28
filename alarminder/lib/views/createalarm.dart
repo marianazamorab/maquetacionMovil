@@ -10,6 +10,8 @@ class CreateAlarm extends StatefulWidget {
 }
 
 class _CreateAlarmState extends State<CreateAlarm> {
+  bool repeat = true;
+  bool vibrate = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -214,15 +216,25 @@ class _CreateAlarmState extends State<CreateAlarm> {
                   Row(
                     children: [
                       Switch(
-                        value: true,
-                        onChanged: (_) {},
+                        value: repeat,
+                        onChanged: (_) {
+                          setState(() {
+                            repeat = !repeat;
+                          });
+                        },
+                        trackOutlineColor:
+                            const MaterialStatePropertyAll(Colors.green1),
                         trackColor:
                             const MaterialStatePropertyAll(Colors.green1),
+                        thumbColor:
+                            const MaterialStatePropertyAll(Colors.white),
                       ),
                       const SizedBox(
                         width: 12,
                       ),
-                      const Icon(Icons.arrow_forward_ios),
+                      repeat
+                          ? const Icon(Icons.arrow_forward_ios)
+                          : const SizedBox(),
                     ],
                   )
                 ],
@@ -304,10 +316,18 @@ class _CreateAlarmState extends State<CreateAlarm> {
                   Row(
                     children: [
                       Switch(
-                        value: true,
-                        onChanged: (_) {},
+                        value: vibrate,
+                        onChanged: (_) {
+                          setState(() {
+                            vibrate = !vibrate;
+                          });
+                        },
+                        trackOutlineColor:
+                            const MaterialStatePropertyAll(Colors.green1),
                         trackColor:
                             const MaterialStatePropertyAll(Colors.green1),
+                        thumbColor:
+                            const MaterialStatePropertyAll(Colors.white),
                       ),
                       const SizedBox(
                         width: 36,
