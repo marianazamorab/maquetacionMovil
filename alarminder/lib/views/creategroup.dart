@@ -18,7 +18,10 @@ class _CreateGroupState extends State<CreateGroup> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: Image.asset('assets/images/profile_default.png'),
+            child: SizedBox(
+                width: 50,
+                height: 40,
+                child: Image.asset('assets/images/profile_default.png')),
           ),
         ],
         title: Text(

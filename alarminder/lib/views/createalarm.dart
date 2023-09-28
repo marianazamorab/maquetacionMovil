@@ -12,6 +12,7 @@ class CreateAlarm extends StatefulWidget {
 class _CreateAlarmState extends State<CreateAlarm> {
   bool repeat = true;
   bool vibrate = true;
+  String selectedTone = 'Birds';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +21,10 @@ class _CreateAlarmState extends State<CreateAlarm> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: Image.asset('assets/images/profile_default.png'),
+            child: SizedBox(
+                width: 50,
+                height: 40,
+                child: Image.asset('assets/images/profile_default.png')),
           ),
         ],
         title: Text(
@@ -293,7 +297,12 @@ class _CreateAlarmState extends State<CreateAlarm> {
                       const SizedBox(
                         width: 12,
                       ),
-                      const Icon(Icons.arrow_forward_ios),
+                      GestureDetector(
+                        child: const Icon(Icons.arrow_forward_ios),
+                        onTap: () {
+                          showToneDialogue(context);
+                        },
+                      ),
                     ],
                   )
                 ],
@@ -367,6 +376,68 @@ class _CreateAlarmState extends State<CreateAlarm> {
           ],
         ),
       ),
+    );
+  }
+
+  void showToneDialogue(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.green2,
+          title: const Text('Seleccione un tono'),
+          content: Container(
+            color: Colors.white,
+            height: 48,
+            width: 50,
+            child: DropdownButton<String>(
+              dropdownColor: Colors.white,
+              icon: null,
+              iconSize: 0,
+              value: selectedTone,
+              items: [
+                DropdownMenuItem<String>(
+                  value: 'Bells',
+                  child: Text(
+                    'Bells',
+                    style: GoogleFonts.montserrat()
+                        .copyWith(fontSize: 18, color: Colors.black),
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'Birds',
+                  child: Text(
+                    'Birds',
+                    style: GoogleFonts.montserrat()
+                        .copyWith(fontSize: 18, color: Colors.black),
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'Trin Trin',
+                  child: Text(
+                    'Trin Trin',
+                    style: GoogleFonts.montserrat()
+                        .copyWith(fontSize: 18, color: Colors.black),
+                  ),
+                ),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  selectedTone = value!;
+                });
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

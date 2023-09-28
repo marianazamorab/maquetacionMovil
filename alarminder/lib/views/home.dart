@@ -1,6 +1,9 @@
 import 'package:alarminder/colors.dart';
 import 'package:alarminder/views/createalarm.dart';
 import 'package:alarminder/views/creategroup.dart';
+import 'package:alarminder/views/editprofile.dart';
+import 'package:alarminder/views/soundingalarm.dart';
+import 'package:alarminder/views/wakinghour.dart';
 import 'package:flutter/material.dart' hide Colors;
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,16 +25,44 @@ class _HomeViewState extends State<HomeView> {
         appBar: AppBar(
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: Image.asset('assets/images/profile_default.png'),
-            ),
+                padding: const EdgeInsets.only(right: 16),
+                child: GestureDetector(
+                  onTap: () {},
+                  /* => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Editprofile(),
+                    ),
+                  ), */
+                  child: SizedBox(
+                    width: 50,
+                    height: 40,
+                    child: Image.asset('assets/images/profile_default.png'),
+                  ),
+                )),
           ],
-          title: Text(
-            'AlarmMinder',
-            style: GoogleFonts.montserrat().copyWith(
-              fontSize: 20,
-              color: Colors.white,
-            ),
+          title: Row(
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  /* => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Soundingalarm(),
+                        ),
+                      ), */
+                  icon: const Icon(Icons.alarm)),
+              const SizedBox(
+                width: 70,
+              ),
+              Text(
+                'AlarmMinder',
+                style: GoogleFonts.montserrat().copyWith(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
           backgroundColor: Colors.blue2,
         ),
@@ -44,6 +75,12 @@ class _HomeViewState extends State<HomeView> {
                     const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
                 child: GestureDetector(
                   onTap: () {},
+                  /* => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Wakinghour(),
+                    ),
+                  ), */
                   child: DecoratedBox(
                     decoration: const BoxDecoration(
                       color: Colors.blue2_50,
