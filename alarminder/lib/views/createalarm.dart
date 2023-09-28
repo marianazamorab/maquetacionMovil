@@ -12,7 +12,7 @@ class CreateAlarm extends StatefulWidget {
 class _CreateAlarmState extends State<CreateAlarm> {
   bool repeat = true;
   bool vibrate = true;
-  String selectedTone = 'Birds';
+  String selectedTone = 'Dias';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -233,11 +233,16 @@ class _CreateAlarmState extends State<CreateAlarm> {
                         thumbColor:
                             const MaterialStatePropertyAll(Colors.white),
                       ),
-                      const SizedBox(
-                        width: 12,
+                      SizedBox(
+                        width: repeat ? 12 : 38,
                       ),
                       repeat
-                          ? const Icon(Icons.arrow_forward_ios)
+                          ? GestureDetector(
+                              child: const Icon(Icons.arrow_forward_ios),
+                              onTap: () {
+                                showRepeatDialogue(context);
+                              },
+                            )
                           : const SizedBox(),
                     ],
                   )
@@ -426,6 +431,106 @@ class _CreateAlarmState extends State<CreateAlarm> {
                   selectedTone = value!;
                 });
               },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showRepeatDialogue(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.green2,
+          title: const Text('Personalizar alarma'),
+          content: Container(
+            height: 80,
+            width: 50,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 110),
+                  child: Text(
+                    'Repetir cada',
+                    style: GoogleFonts.montserrat().copyWith(
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 30,
+                      color: Colors.white,
+                    ),
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        width: 100,
+                        color: Colors.white,
+                        child: DropdownButton<String>(
+                          dropdownColor: Colors.white,
+                          icon: null,
+                          iconSize: 0,
+                          value: selectedTone,
+                          items: [
+                            DropdownMenuItem<String>(
+                              value: 'Dias',
+                              child: Text(
+                                'Dias',
+                                style: GoogleFonts.montserrat().copyWith(
+                                    fontSize: 18, color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: 'Semanas',
+                              child: Text(
+                                'Semanas',
+                                style: GoogleFonts.montserrat().copyWith(
+                                    fontSize: 18, color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            DropdownMenuItem<String>(
+                              value: 'Meses',
+                              child: Text(
+                                'Meses',
+                                style: GoogleFonts.montserrat().copyWith(
+                                    fontSize: 18, color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                          onChanged: (value) {
+                            setState(() {
+                              selectedTone = value!;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           actions: [
