@@ -27,13 +27,12 @@ class _HomeViewState extends State<HomeView> {
             Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: GestureDetector(
-                  onTap: () {},
-                  /* => Navigator.push(
+                  onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Editprofile(),
                     ),
-                  ), */
+                  ),
                   child: SizedBox(
                     width: 50,
                     height: 40,
@@ -44,13 +43,12 @@ class _HomeViewState extends State<HomeView> {
           title: Row(
             children: [
               IconButton(
-                  onPressed: () {},
-                  /* => Navigator.push(
+                  onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const Soundingalarm(),
                         ),
-                      ), */
+                      ),
                   icon: const Icon(Icons.alarm)),
               const SizedBox(
                 width: 70,
@@ -74,13 +72,12 @@ class _HomeViewState extends State<HomeView> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
                 child: GestureDetector(
-                  onTap: () {},
-                  /* => Navigator.push(
+                  onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Wakinghour(),
                     ),
-                  ), */
+                  ),
                   child: DecoratedBox(
                     decoration: const BoxDecoration(
                       color: Colors.blue2_50,

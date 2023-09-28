@@ -12,7 +12,7 @@ class CreateAlarm extends StatefulWidget {
 class _CreateAlarmState extends State<CreateAlarm> {
   bool repeat = true;
   bool vibrate = true;
-  String selectedTone = 'Dias';
+  String selectedTone = 'Bells';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
